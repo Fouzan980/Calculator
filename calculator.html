@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0%;
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items:center;
+            height: 100vh;
+            font-family:sans-serif;
+            transition: background-color 0.6s ease-in-out;
+        }
+        #calculator{
+            background-color: hsl(0, 0%, 15%);
+            border-radius:50px;
+            max-width: 500px;
+            flex-wrap:wrap   ;
+            overflow:hidden
+        }
+        #display{
+            width:100%;
+            padding:20px;
+            margin:none;
+            font-size: 5rem;
+            text-align:left;
+            border:none;
+            background-color:hsl(0, 0%, 20%);
+            color: white;
+        }
+
+        #keys{
+            display: grid;
+            grid-template-columns: repeat(4 ,1fr);
+            gap: 10px;
+            padding:25px;
+        }
+        button{
+            width:100px;
+            height:100px;
+            border-radius:50px;
+            border:none;
+            background-color: hsl(0, 0% ,30%);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor:pointer;
+        }
+        button:hover{
+            background-color: hsl(0, 0%, 40%)}
+button:active{
+                background-color: hsl(0, 0%, 50%)
+            }
+.operator-btn{
+    background-color: hsl(35,100%,55% );
+}
+.operator-btn:hover{
+    background-color: hsl(35,100%,65% );
+}
+.operator-btn:active{
+    background-color: hsl(35,100%,75% );
+}
+.equal-sign{ background: hsl(218, 62%, 55%);
+}
+.equal-sign:hover{ background: hsl(218, 62%, 65%);
+}
+.cl-btn{
+    background:hsl(300, 17%, 30%);
+}
+.cl-btn:hover{
+    background:hsl(300, 17%, 40%);
+}
+.dark-theme {
+      background-color:black; 
+    }
+    .theme-button {
+        background-color: hsl(197, 51%, 67%);
+      font-size: 28px;
+      border: none;
+      border-radius: 50px;
+    }
+    .theme-button:hover {
+        background-color: hsl(197, 87%, 50%);
+    }
+    p{
+        color: white;
+        font-size: 15px;
+        text-align: center;
+    }
+        </style>
+</head>
+<body>
+
+    <div id="calculator">
+        <input type="text"  placeholder="0" id="display" readonly>
+        <div id="keys">
+            <button onclick="clearDisplay()"class="cl-btn">C</button>
+            <button class="theme-button"  onclick="toggleTheme()">Theme</button>
+            <button class="operator-btn" onclick="calculatePercentage()">%</button>
+            <button onclick="appendToDisplay('/')"class="operator-btn">÷</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')"class="operator-btn">x</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')"class="operator-btn">−</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')" class="operator-btn">+</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="removeLastWord()">⌫</button>
+            <button onclick="calculate()" class="equal-sign">=</button>
+        </div>
+        <p>Made with ❤️ by Fouzan Developer</p>
+    </div>
+    <script>
+        const display = document.getElementById("display");
+
+        function appendToDisplay(input) {
+            display.value += input;
+        }
+        function clearDisplay() {
+            display.value = "";
+        }
+        function calculate() {
+        try{
+            display.value = eval(display.value);
+        }
+        catch{
+            display.value="Error"; }   
+        }
+        function calculatePercentage() {
+    var display = document.getElementById("display");
+    var currentValue = parseFloat(display.value);
+    display.value = (currentValue / 100).toFixed(2);
+  }
+        function removeLastWord() {
+    var display = document.getElementById("display");
+    var currentValue = display.value;
+    display.value = currentValue.slice(0, -1);
+  }
+        function toggleTheme() {
+    var body = document.body;
+    body.classList.toggle("dark-theme");
+    var button = document.getElementsByClassName("themeButton")}
+    </script>
+</body>
+</html>
